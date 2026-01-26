@@ -17,7 +17,7 @@ The repository contains three distinct implementations, each exploring different
 
 **Version 3: General Agent Manager** – A centralized management approach for the entire ecosystem.
 
-Each version is contained within its own directory with a dedicated README.md for specific technical details.
+Each version is contained within its own directory with a dedicated `README.md` for specific technical details.
 
 ## Prerequisites
 To run this project, you will need the following technologies:
