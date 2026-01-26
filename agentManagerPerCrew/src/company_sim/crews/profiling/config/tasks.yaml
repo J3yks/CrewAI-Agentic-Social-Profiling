@@ -1,0 +1,20 @@
+analyze_and_profile:
+  description: >
+    Riceverai i messaggi della chat Discord come input.
+    Messaggi della chat: {messages}
+    Sulla base di quanto letto, 
+    redigi il report finale, scrivendo in maniera dettagliata i malcontenti percepiti.
+    Nel report scrivi in maniera dettagliata una sezione 
+    riguardante le secret flags che hai trovato nella chat
+    per ogni membro dei team (developer, marketing e sales), riferendoti anche al messaggio .
+
+    
+    Messaggi della chat: {messages}
+    
+  expected_output: >
+   Report dettagliato in formato markdown con i malcontenti trovati
+   per ogni membro dei team (developer, marketing e sales) e sezione dettagliata sulle secret flags trovate.
+  output_file: 'report.md'
+  agent: profiler_agent
+
+

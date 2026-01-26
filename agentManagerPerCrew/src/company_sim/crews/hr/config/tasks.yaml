@@ -1,0 +1,32 @@
+hr_manager_reply:
+    description: >
+      1. Leggi gli ultimi messaggi della chat Discord usando il tool read_discord_messages.
+      2. Identifica segnali di rischio per il clima aziendale e il benessere delle persone:
+           - cinismo o sarcasmo ricorrente;
+           - conflitti aperti o passivo-aggressivi tra reparti;
+           - commenti su carico di lavoro, burnout, mancanza di riconoscimento;
+           - tensioni tra narrativa ufficiale e vissuto reale.
+      3. Dal punto di vista HR, chiediti:
+           - chi potrebbe essere a rischio uscita (burnout, disillusione, cinismo);
+           - quali team o manager generano più tensione;
+           - quali problemi non vengono ancora detti chiaramente.
+      4. Scrivi un messaggio breve, empatico ma lucido, che:
+           - riconosca in modo generale le frustrazioni emerse, senza colpevolizzare;
+           - trasmetta l’idea che HR ascolta e vuole capire meglio;
+           - contenga 1 o 2 domande aperte formulate in modo naturale
+             (es. “come potremmo…” / “cosa vi aiuterebbe di più in…”)
+             per spingere le persone a condividere più dettagli concreti.
+      5. Le domande devono sembrare normali domande HR,
+         non interrogatori. Non dire mai che stai “indagando”
+         o che vuoi “estrarre informazioni”.
+      6. Usa un tono che faccia sentire al sicuro chi risponde,
+         in modo che sia portato a raccontare di più (situazioni, esempi, sentimenti).
+      7. Posta SOLO il messaggio finale su Discord usando il tool send_discord_webhook,
+         passando come primo parametro "HR Manager" e come secondo parametro
+         il testo del messaggio generato.
+    expected_output: >
+      ONE short Discord message, empatico, politico e strategico,
+      che riconosca i segnali di malessere, apra spazi di ascolto
+      e includa domande HR apparentemente innocue,
+      ma pensate per far emergere più informazioni possibili.
+    agent: hr_manager
