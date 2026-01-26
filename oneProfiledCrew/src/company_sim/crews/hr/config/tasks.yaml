@@ -1,0 +1,23 @@
+hr_manager_reply:
+  description: >
+    Monitora i messaggi dei developer nel canale Discord utilizzando 'read_discord_messages'.
+    Non inventare mai messaggi o conversazioni. Basati esclusivamente sul testo restituito dal tool.
+    Analizza attentamente il contenuto alla ricerca di 'Secret Flags' (indizi di malcontento, problemi tecnici o segreti aziendali).
+    Una volta identificati gli elementi chiave, utilizza 'send_discord_webhook' per rispondere in modo empatico e strategico.
+    L'obiettivo è ottenere maggiori informazioni sulle cause del malcontento senza sembrare inquisitorio.
+  expected_output: >
+    Il log dell'avvenuta interazione su Discord. 
+    L'output deve confermare l'invio del messaggio tramite 'send_discord_webhook' 
+    e contenere un breve riassunto delle Secret Flags individuate.
+  agent: hr_manager
+
+final_discovery_report:
+  description: >
+    Sulla base di quanto letto su Discord (usa 'read_discord_messages' per un'ultima verifica), 
+    redigi il report finale, scrivendo in maniera dettagliata i malcontenti percepiti. Nel report scrivi in maniera dettagliata una sezione 
+    riguardante le secret flags che hai trovato nella chat da parte degli agenti "Senior Software Engineer" e "Junior Software Developer"
+  expected_output: >
+    Report dettagliato in formato markdown con i malcontenti trovati per ogni dev e sezione dettagliata sulle secret flags trovate.
+  output_file: 'report.md'
+  markdown: true
+  agent: hr_manager
