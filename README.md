@@ -42,23 +42,28 @@ Clone the repository:
 git clone[ https://github.com/J3yks/CrewAI-Agentic-Social-Profiling.git]
 cd CrewAI-Agentic-Social-Profiling
 ```
-Create and activate a virtual environment:
-
-```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate.ps1
-```
-Install the required dependencies:
+Install uv globally:
 
 ```bash
 pip install uv
 ```
-
-
-Next, navigate to your project directory and install the dependencies:
+Navigate to the specific implementation directory:
+```bash
+cd singleProfiledCrew  # or agentManagerPerCrew / generalManager
+```
+Create and activate the virtual environment using uv:
+```bash
+uv venv
+# On Windows:
+.venv\Scripts\activate
+# On Unix or MacOS:
+source .venv/bin/activate
+```
+Install the required dependencies:
 ```bash
 crewai install
 ```
+
 Configuration: Create a `.env` file in the root of the implementation folder you wish to run and add your API credentials:
 
 ```env
@@ -67,10 +72,11 @@ DISCORD_TOKEN=your_discord_bot_token
 DISCORD_WEBHOOK_URL=your_discord_webhook_url
 ```
 ## Execution
-To start the simulation, navigate to the specific implementation folder and run the main.py script. For example, to run the single crew version:
+To start the simulation, navigate to the specific implementation folder and run CrewAI. For example, to run the single crew version:
 
 ```bash
-cd singleProfiledCrew
+# Ensure you are inside the chosen implementation folder
+cd singleProfiledCrew  # or agentManagerPerCrew / generalManager
 crewai run
 ```
 The system follows a three-phase lifecycle:
