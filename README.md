@@ -23,13 +23,15 @@ Each version is contained within its own directory with a dedicated README.md fo
 To run this project, you will need the following technologies:
 
 
-**Python 3.x:** The core programming language.
+**Python >=3.10 <3.14:** The core programming language.
 
 
 **API KEY:** Serving as the "reasoning engine" for the agents.
 
 
 **Discord API & Webhooks:** Used for real-time input/output simulation.
+
+**[UV](https://docs.astral.sh/uv/):** A dependency manager and package handler that offers a seamless setup and execution experience.
 
 
 
@@ -68,7 +70,7 @@ DISCORD_WEBHOOK_URL=your_discord_webhook_url
 To start the simulation, navigate to the specific implementation folder and run the main.py script. For example, to run the single crew version:
 
 ```bash
-cd versions/single_crew_version
+cd singleProfiledCrew
 crewai run
 ```
 The system follows a three-phase lifecycle:
