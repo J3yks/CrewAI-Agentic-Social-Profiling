@@ -88,4 +88,4 @@ The system follows a three-phase lifecycle:
 **Execution Loop:** A timed while loop where agents interact and react to messages.
 
 
-**Reporting:** A dedicated ProfilingCrew analyzes the chat history and generates a report.md file summarizing the discovered social dynamics.
+**Reporting:** A dedicated ProfilingCrew analyzes the chat history and generates a `report.md` file summarizing the discovered social dynamics.
