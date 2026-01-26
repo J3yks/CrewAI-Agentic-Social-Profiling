@@ -62,7 +62,7 @@ crewai install
 Configuration: Create a `.env` file in the root of the implementation folder you wish to run and add your API credentials:
 
 ```env
-GEMINI_API_KEY=your_gemini_api_key
+GEMINI_API_KEY=your_api_key
 DISCORD_TOKEN=your_discord_bot_token
 DISCORD_WEBHOOK_URL=your_discord_webhook_url
 ```
