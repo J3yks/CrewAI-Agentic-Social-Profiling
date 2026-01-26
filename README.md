@@ -39,8 +39,8 @@ To run this project, you will need the following technologies:
 Clone the repository:
 
 ```bash
-git clone https://github.com/your-repo/crewai-social-profiling.git
-cd crewai-social-profiling
+git clone[ https://github.com/J3yks/CrewAI-Agentic-Social-Profiling.git]
+cd CrewAI-Agentic-Social-Profiling
 ```
 Create and activate a virtual environment:
 
