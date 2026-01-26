@@ -3,7 +3,7 @@
 
 [CrewAI](https://crewai.com) Agentic Social Profiling is an automated system designed to analyze and understand relational, behavioral, and communicative dynamics within a corporate or social group. Developed as a project for the Alma Mater Studiorum Università di Bologna (A.Y. 2025-2026), it utilizes a multi-agent framework to move beyond passive data analysis toward active participation by autonomous entities.
 
-By integrating Large Language Models (LLMs) and the [crewAI](https://crewai.com) orchestration framework, the system simulates a corporate chat environment (via Discord) where artificial agents represent specific roles—such as Senior Engineers or HR Managers. These agents interact, interpret context, and deduce "latent dynamics" or "Secret Flags" (unexpressed grievances like technical debt or lack of mentorship). The ultimate goal is to transform raw social data into actionable HR insights, facilitating proactive mediation and team cohesion.
+By integrating Large Language Models (LLMs) and the [CrewAI](https://crewai.com) orchestration framework, the system simulates a corporate chat environment (via Discord) where artificial agents represent specific roles—such as Senior Engineers or HR Managers. These agents interact, interpret context, and deduce "latent dynamics" or "Secret Flags" (unexpressed grievances like technical debt or lack of mentorship). The ultimate goal is to transform raw social data into actionable HR insights, facilitating proactive mediation and team cohesion.
 
 ## Project Structure
 The repository contains three distinct implementations, each exploring different levels of organizational complexity and agentic autonomy:
