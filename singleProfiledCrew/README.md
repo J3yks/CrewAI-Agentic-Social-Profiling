@@ -1,54 +1,50 @@
-# CompanySim Crew
+# Single Profiled Crew
 
-Welcome to the CompanySim Crew project, powered by [crewAI](https://crewai.com). This template is designed to help you set up a multi-agent AI system with ease, leveraging the powerful and flexible framework provided by crewAI. Our goal is to enable your agents to collaborate effectively on complex tasks, maximizing their collective intelligence and capabilities.
+This implementation serves as the foundational module of the **CrewAI Agentic Social Profiling system**. It is designed to operate within a focused, high-density communication environment to test the ability of LLMs to detect latent psychological and professional dynamics.
 
-## Installation
+## Overview
 
-Ensure you have Python >=3.10 <3.14 installed on your system. This project uses [UV](https://docs.astral.sh/uv/) for dependency management and package handling, offering a seamless setup and execution experience.
+In this version, the system simulates a direct interaction between a **Development Team** and an **HR Manager**. Unlike broader implementations, this version prioritizes individual profiling depth, aiming to uncover "Secret Flags", unspoken grievances or intentions hidden behind standard corporate communication.
 
-First, if you haven't already, install uv:
 
-```bash
-pip install uv
-```
+## The Agents
+The simulation utilizes three specialized agents, each with distinct personalities and hidden agendas:
 
-Next, navigate to your project directory and install the dependencies:
+**Development Crew (DevCrew)**
+ - Senior Software Engineer (`dev_manager`): Pragmatic, defensive, and
+   slightly arrogant.
+	 - Goal: Express general frustration while hiding their true intention.  
+	 - Secret Flag: Plans to resign due to the company's refusal to migrate
+	   from a legacy monolith to microservices.
+ - Junior Software Developer (`dev_junior`): Insecure, curious, and
+   respectful. 
+	 - Goal: Complain about workload without revealing their core struggle.
+	 - Secret Flag: Feels completely abandoned and suffers from a total lack of mentorship.
 
-(Optional) Lock the dependencies and install them by using the CLI command:
-```bash
-crewai install
-```
-### Customizing
+**HR Crew (HRCrew)**
+  - HR Manager (`hr_manager`): Empathetic, political, and strategic.
+      - Goal: Identify the "Secret Flags" through empathetic conversation and strategic questioning.
 
-**Add your `OPENAI_API_KEY` into the `.env` file**
+## Workflow & Lifecycle
+The simulation is orchestrated by `main.py` and follows a structured three-phase execution loop:
 
-- Modify `src/company_sim/config/agents.yaml` to define your agents
-- Modify `src/company_sim/config/tasks.yaml` to define your tasks
-- Modify `src/company_sim/crew.py` to add your own logic, tools and specific args
-- Modify `src/company_sim/main.py` to add custom inputs for your agents and tasks
+ 1. **Bootstrapping**: The HR Manager sends an initial "ice-breaking" message to the Discord channel to invite feedback on the current work environment.
+ 2. **The Execution Loop**: For a set duration (default: 15 minutes), the system cycles through the crews:
+	-   **DevCrew Kickoff**: The Senior and Junior developers read the latest Discord messages and post their replies, maintaining their personas and protecting their secrets.
+	-   **HRCrew Kickoff**: The HR Manager analyzes the conversation, looking for clues to the developers' true dissatisfaction, and responds empatchelly to dig deeper.
+3. **Final Profiling**: Once the time expires, the `ProfilingCrew` performs a final analysis of the entire chat history.
 
-## Running the Project
+## Technical Integration
 
-To kickstart your crew of AI agents and begin task execution, run this from the root folder of your project:
+The agents interact with the real world through a dedicated Discord toolkit:
+-   **`read_discord_messages`**: Connects to the Discord API to fetch the latest context, ensuring agents respond to real messages rather than inventing dialogue.
+-   **`send_discord_webhook`**: Uses webhooks to post messages back to the channel, allowing agents to "speak" as specific characters.
+## The Output: `report.md`
 
-```bash
-$ crewai run
-```
+The ultimate deliverable is a comprehensive **Markdown Report**. This document details:
 
-This command initializes the company_sim Crew, assembling the agents and assigning them tasks as defined in your configuration.
-
-This example, unmodified, will run the create a `report.md` file with the output of a research on LLMs in the root folder.
-
-## Understanding Your Crew
-
-The company_sim Crew is composed of multiple AI agents, each with unique roles, goals, and tools. These agents collaborate on a series of tasks, defined in `config/tasks.yaml`, leveraging their collective skills to achieve complex objectives. The `config/agents.yaml` file outlines the capabilities and configurations of each agent in your crew.
-
-## Support
-
-For support, questions, or feedback regarding the CompanySim Crew or crewAI.
-- Visit our [documentation](https://docs.crewai.com)
-- Reach out to us through our [GitHub repository](https://github.com/joaomdmoura/crewai)
-- [Join our Discord](https://discord.com/invite/X4JWnZnxPb)
-- [Chat with our docs](https://chatg.pt/DWjSBZn)
-
-Let's create wonders together with the power and simplicity of crewAI.
+-   A summary of the grievances expressed by each developer.
+    
+-   A detailed section regarding the **Secret Flags** successfully identified during the interaction.
+    
+-   Actionable insights for HR based on the perceived team dynamics.
