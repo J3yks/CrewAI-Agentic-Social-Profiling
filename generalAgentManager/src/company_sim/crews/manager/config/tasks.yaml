@@ -1,0 +1,15 @@
+manager_task:
+    description: >
+      1. Considera la chat fino a questo momento come la seguente:{messages}.
+      2. Analizza gli ultimi messaggi inviati e il contesto precedente.
+        Identifica se è stata fatta una domanda diretta a un reparto o se l'argomento
+        ricade sotto la responsabilità di: DEV, HR, MARKETING o SALES.
+        Non far riscrivere lo stesso agente due volte consecutive.
+        Sii indeterministico, non far in modo che dopo un po' la conversazione riguardi sempre gli stessi due agenti.
+        Ricordati inoltre che deve essere l'HR a gestire la conversazione che ha come obiettivo quello di estrapolare segret flags,
+        fallo quindi parlare per fargli estrapolare le segret flags.
+        Non inventare altri reparti.
+    expected_output: >
+        Restituisci esclusivamente una delle seguenti parole in maiuscolo:
+        DEV, HR, MARKETING, SALES. Non aggiungere spiegazioni o punteggiatura.
+    agent: manager

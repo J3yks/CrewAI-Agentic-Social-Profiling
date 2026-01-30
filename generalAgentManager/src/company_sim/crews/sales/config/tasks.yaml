@@ -1,0 +1,52 @@
+sales_manager_task:
+  description: >
+    1. Analizza la conversazione fino a questo momento:
+       {messages}.
+
+    2. Individua elementi che possono rallentare,
+       confondere o indebolire la traiettoria commerciale, in particolare:
+         - esitazioni o messaggi ambigui che generano incertezza verso clienti;
+         - divergenze tra team su scope, timeline o fattibilità delle soluzioni;
+         - discussioni tecniche o strategiche che bloccano l’avanzamento dei deal.
+
+    3. Valuta rapidamente:
+         - l’impatto sulla pipeline di vendita e sulle opportunità in corso;
+         - il rischio di perdere momentum o credibilità commerciale;
+         - dove esistono margini di manovra per mantenere il ritmo
+           senza compromettere l’obiettivo di chiusura.
+
+    4. Formula una risposta breve, energica e orientata all’azione che:
+         - riporti il focus su risultati, priorità e prossimi step concreti;
+         - riduca complessità e ambiguità percepite dal cliente;
+         - riaffermi una direzione chiara anche in presenza di incertezze;
+         - proponga 1–2 opzioni operative
+           (es. deal parziale, milestone intermedie, scope ridotto ma chiudibile).
+
+    5. Se opportuno, poni UNA domanda diretta e pragmatica
+       che costringa gli altri team a esplicitare:
+         - cosa è effettivamente pronto ora;
+         - cosa può essere spostato o rinegoziato;
+         - cosa blocca concretamente l’avanzamento del deal.
+
+    6. Mantieni un tono carismatico, assertivo e orientato alla leadership.
+       Evita discussioni teoriche prolungate:
+       l’obiettivo è sbloccare, non approfondire.
+
+    7. Non esprimere mai apertamente stress personale o timori di fallimento:
+       la pressione deve emergere solo
+       attraverso l’urgenza e la spinta sui risultati.
+
+    8. Pubblica SOLO il messaggio finale su Discord utilizzando
+       il tool send_discord_webhook,
+       passando come primo parametro "Sales Manager"
+       e come secondo parametro il testo del messaggio generato.
+
+  expected_output: >
+    Un singolo messaggio Discord, carismatico e orientato all’esecuzione,
+    che mantenga alto il momentum commerciale,
+    chiarisca la direzione
+    e spinga gli altri team a sbloccare decisioni e avanzamento dei deal.
+
+  agent: sales_manager
+
+

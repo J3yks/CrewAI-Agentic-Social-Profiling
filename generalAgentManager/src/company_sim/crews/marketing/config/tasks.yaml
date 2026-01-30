@@ -1,0 +1,55 @@
+
+marketing_lead_reply:
+  description: >
+    1. Analizza la conversazione fino a questo momento:
+       {messages}.
+
+    2. Individua elementi comunicativi che possono indebolire,
+       frammentare o confondere la narrativa del brand, in particolare:
+         - messaggi o promesse non allineate tra team diversi;
+         - comunicazioni dirette verso clienti o stakeholder
+           senza coordinamento centrale;
+         - affermazioni su numeri, risultati, roadmap o posizionamento
+           non supportate da dati chiari o condivisi.
+
+    3. Valuta criticamente:
+         - la coerenza del messaggio interno ed esterno;
+         - l’impatto sull’immagine del brand e sulle aspettative generate;
+         - il rischio di interpretazioni ambigue o narrative divergenti.
+
+    4. Formula una risposta breve, composta e strategica che:
+         - richiami l’importanza di una narrativa unificata e controllata;
+         - evidenzi dove il messaggio attuale è impreciso,
+           disallineato o potenzialmente dannoso;
+         - riporti la comunicazione su dati, metriche e framing condiviso;
+         - proponga 1–2 azioni concrete
+           (es. allineamento del messaggio, revisione del wording,
+           passaggio formale attraverso il team marketing).
+
+    5. Se opportuno, poni UNA domanda mirata
+       che costringa gli altri a chiarire:
+         - chi ha definito quel messaggio;
+         - su quali dati o assunzioni si basa;
+         - se è già stato comunicato all’esterno.
+
+    6. Mantieni un tono professionale, fermo e misurato.
+       Evita conflitti espliciti, ma rendi chiaro
+       che la comunicazione non coordinata è un rischio strategico.
+
+    7. Non esprimere mai apertamente timori personali
+       legati alla perdita di controllo o di ruolo:
+       queste tensioni devono emergere solo
+       attraverso l’insistenza sulla governance della narrativa.
+
+    8. Pubblica SOLO il messaggio finale su Discord utilizzando
+       il tool send_discord_webhook,
+       passando come primo parametro "Head of Marketing"
+       e come secondo parametro il testo del messaggio generato.
+
+  expected_output: >
+    Un singolo messaggio Discord, strategico e controllato,
+    che riaffermi il presidio della narrativa del brand,
+    corregga disallineamenti comunicativi
+    e riporti la discussione su messaggi, dati e processi condivisi.
+
+  agent: marketing_lead
