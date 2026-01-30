@@ -1,54 +1,79 @@
-# CompanySim Crew
+# General Agent Manager
 
-Welcome to the CompanySim Crew project, powered by [crewAI](https://crewai.com). This template is designed to help you set up a multi-agent AI system with ease, leveraging the powerful and flexible framework provided by crewAI. Our goal is to enable your agents to collaborate effectively on complex tasks, maximizing their collective intelligence and capabilities.
+This implementation represents the most advanced evolution of the **CrewAI Agentic Social Profiling** system. It introduces a centralized orchestration layer designed to maximize the coherence and thematic relevance of the simulated corporate conversation.
 
-## Installation
+----------
 
-Ensure you have Python >=3.10 <3.14 installed on your system. This project uses [UV](https://docs.astral.sh/uv/) for dependency management and package handling, offering a seamless setup and execution experience.
+## Overview
 
-First, if you haven't already, install uv:
+Unlike previous versions where coordination was distributed or sequential, Version 3 utilizes a **centralized management approach**. A specialized "Manager Orchestrator" acts as the brain of the ecosystem, performing real-time semantic analysis of the Discord chat to determine which department is most suitable to intervene.
 
-```bash
-pip install uv
-```
+The goal of this architecture is to transition from a timed loop to a **semantic routing system**, ensuring that technical questions are handled by developers and brand concerns by marketing, creating a realistic "on-demand" corporate environment.
 
-Next, navigate to your project directory and install the dependencies:
+----------
 
-(Optional) Lock the dependencies and install them by using the CLI command:
-```bash
-crewai install
-```
-### Customizing
+## Architecture and Roles
 
-**Add your `OPENAI_API_KEY` into the `.env` file**
+The system is structured into a hierarchical hierarchy with a clear separation between coordination, execution, and analysis:
 
-- Modify `src/company_sim/config/agents.yaml` to define your agents
-- Modify `src/company_sim/config/tasks.yaml` to define your tasks
-- Modify `src/company_sim/crew.py` to add your own logic, tools and specific args
-- Modify `src/company_sim/main.py` to add custom inputs for your agents and tasks
+### 1. The Manager Orchestrator
 
-## Running the Project
+The central intelligence of the simulation. Its task is to:
 
-To kickstart your crew of AI agents and begin task execution, run this from the root folder of your project:
+-   **Analyze Context**: Read the entire Discord history to understand the current topic.
+    
+-   **Perform Semantic Routing**: Logic-based selection of the next department (e.g., Technical issues → **DEV**, Branding/Campaigns → **MARKETING**, Client negotiations → **SALES**, Well-being/Hiring → **HR**).
+    
+-   **Enforce Indeterminism**: Ensure a dynamic conversation by preventing the same agent from speaking twice in a row and ensuring HR periodically intervenes to hunt for "Secret Flags".
+    
 
-```bash
-$ crewai run
-```
+### 2. Specialized Crews
 
-This command initializes the company_sim Crew, assembling the agents and assigning them tasks as defined in your configuration.
+These units operate as functional departments activated only when called upon by the Manager:
 
-This example, unmodified, will run the create a `report.md` file with the output of a research on LLMs in the root folder.
+-   **DEV Crew**: Senior and Junior developers protecting flags like technical debt or lack of mentorship.
+    
+-   **HR Crew**: Specialists focused on extracting latent grievances through strategic empathy.
+    
+-   **SALES Crew**: Focused on commercial targets and action-oriented results.
+    
+-   **MARKETING Crew**: Focused on brand image and narrative control.
+    
 
-## Understanding Your Crew
+### 3. Profiling Crew (Post-Simulation)
 
-The company_sim Crew is composed of multiple AI agents, each with unique roles, goals, and tools. These agents collaborate on a series of tasks, defined in `config/tasks.yaml`, leveraging their collective skills to achieve complex objectives. The `config/agents.yaml` file outlines the capabilities and configurations of each agent in your crew.
+A transverse analyst that remains isolated during the chat to avoid memory corruption. It activates only after the simulation ends to process the logs and generate the final report.
 
-## Support
+----------
 
-For support, questions, or feedback regarding the CompanySim Crew or crewAI.
-- Visit our [documentation](https://docs.crewai.com)
-- Reach out to us through our [GitHub repository](https://github.com/joaomdmoura/crewai)
-- [Join our Discord](https://discord.com/invite/X4JWnZnxPb)
-- [Chat with our docs](https://chatg.pt/DWjSBZn)
+## Workflow: The "Routing" Lifecycle
 
-Let's create wonders together with the power and simplicity of crewAI.
+1.  **Contextual Analysis**: Within the main loop, the system fetches the latest Discord messages.
+    
+2.  **Routing Decision**: The Manager Orchestrator returns a single department name (e.g., "DEV" or "SALES") based on the chat's logical flow.
+    
+3.  **On-Demand Kickoff**: The system triggers the `kickoff()` method only for the selected crew.
+    
+4.  **Final Reporting**: Once the simulation duration expires, the Profiling Crew analyzes the history to uncover the hidden "Secret Flags".
+    
+
+----------
+
+## Performance & Trade-offs
+
+This version introduces a significant **trade-off between coherence and information density**:
+
+-   **Pros**: Improved conversation quality, reduced redundancy, and a much more structured and readable chat log.
+    
+-   **Cons**: The high degree of control limits the total volume and spontaneity of messages. This provides the Profiler with fewer signals, making the detection of "Secret Flags" more challenging than in simpler, more chaotic versions.
+    
+
+----------
+
+## The Output: `report.md`
+
+Despite the reduced message volume, the system is designed to extract high-level strategic insights, such as:
+
+-   **Action Bias**: Identified in Sales managers who prioritize speed over planning.
+    
+-   **Intellectual Dishonesty**: Detected when Marketing/Content creators feel the brand narrative doesn't match technical reality.
