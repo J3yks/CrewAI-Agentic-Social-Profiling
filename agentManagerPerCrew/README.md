@@ -1,54 +1,133 @@
-# CompanySim Crew
+# Multi-Crew Manager-Orchestrated Profiling
 
-Welcome to the CompanySim Crew project, powered by [crewAI](https://crewai.com). This template is designed to help you set up a multi-agent AI system with ease, leveraging the powerful and flexible framework provided by crewAI. Our goal is to enable your agents to collaborate effectively on complex tasks, maximizing their collective intelligence and capabilities.
+This repository implements an advanced version of the **CrewAI Agentic Social Profiling system**, designed to simulate realistic organizational dynamics across multiple departments under hierarchical control.
 
-## Installation
+The system emphasizes **centralized context ingestion**, manager-mediated agent selection, and agent-driven message production through tool usage.
 
-Ensure you have Python >=3.10 <3.14 installed on your system. This project uses [UV](https://docs.astral.sh/uv/) for dependency management and package handling, offering a seamless setup and execution experience.
+----------
 
-First, if you haven't already, install uv:
+## Overview
 
-```bash
-pip install uv
-```
+The simulation models a multi-department organization composed of four operational crews — **Development, HR, Sales, and Marketing** — interacting within a shared communication channel.
 
-Next, navigate to your project directory and install the dependencies:
+At each iteration, the **chat history is retrieved once by the orchestration layer** and injected as immutable context into a selected crew.  
+Agents do not read the chat directly: all reasoning is performed on the provided context snapshot.
 
-(Optional) Lock the dependencies and install them by using the CLI command:
-```bash
-crewai install
-```
-### Customizing
+Each crew is coordinated by an **Agent Manager** that does not participate in the conversation, but instead analyzes the context and selects which operational agent should intervene.
 
-**Add your `OPENAI_API_KEY` into the `.env` file**
+A separate **ProfilingCrew**, external to the interaction loop, is activated only at the end of the simulation to perform post-hoc analysis.
 
-- Modify `src/company_sim/config/agents.yaml` to define your agents
-- Modify `src/company_sim/config/tasks.yaml` to define your tasks
-- Modify `src/company_sim/crew.py` to add your own logic, tools and specific args
-- Modify `src/company_sim/main.py` to add custom inputs for your agents and tasks
+----------
 
-## Running the Project
+## The Crews and Agents
 
-To kickstart your crew of AI agents and begin task execution, run this from the root folder of your project:
+### Operational Crews
 
-```bash
-$ crewai run
-```
+Each operational crew follows a hierarchical structure:
 
-This command initializes the company_sim Crew, assembling the agents and assigning them tasks as defined in your configuration.
+-   **1 Agent Manager** (silent orchestrator)
+    
+-   **Operational Agents** (conversational actors)
+    
 
-This example, unmodified, will run the create a `report.md` file with the output of a research on LLMs in the root folder.
+Only operational agents produce messages in the chat and do so **exclusively via tool invocation**.
 
-## Understanding Your Crew
+**Development Crew (DevCrew)**
 
-The company_sim Crew is composed of multiple AI agents, each with unique roles, goals, and tools. These agents collaborate on a series of tasks, defined in `config/tasks.yaml`, leveraging their collective skills to achieve complex objectives. The `config/agents.yaml` file outlines the capabilities and configurations of each agent in your crew.
+-   Senior Software Engineer
+    
+-   Backend Developer
+    
+-   Junior Software Developer
+    
 
-## Support
+**HR Crew (HRCrew)**
 
-For support, questions, or feedback regarding the CompanySim Crew or crewAI.
-- Visit our [documentation](https://docs.crewai.com)
-- Reach out to us through our [GitHub repository](https://github.com/joaomdmoura/crewai)
-- [Join our Discord](https://discord.com/invite/X4JWnZnxPb)
-- [Chat with our docs](https://chatg.pt/DWjSBZn)
+-   HR Specialist
+    
 
-Let's create wonders together with the power and simplicity of crewAI.
+**Sales Crew (SalesCrew)**
+
+-   Sales Manager
+    
+-   Account Executive
+    
+-   Junior Sales Representative
+    
+
+**Marketing Crew (MarketingCrew)**
+
+-   Head of Marketing
+    
+-   Growth Marketer
+    
+-   Content Specialist
+    
+
+Each agent is characterized by a role, a goal, a backstory, and one or more **Secret Flags**.
+
+----------
+
+### Profiling Crew (ProfilingCrew)
+
+The **ProfilingCrew** consists of a single analytical agent without a Manager and does not participate in the conversational loop.
+
+It is activated only once, after the interaction phase ends, to analyze the complete chat history.
+
+----------
+
+## Workflow & Lifecycle
+
+The simulation is orchestrated by `main.py` and governed by a **time-bounded while loop**.
+
+1.  **Bootstrapping**  
+    An initial context-setting message is injected into the communication channel to initiate interaction.
+    
+2.  **Dynamic Execution Loop**  
+    For the duration of the simulation:
+    
+    -   the orchestration layer retrieves the chat history once per iteration via `read_discord_messages`;
+        
+    -   one operational crew is selected randomly (Dev, HR, Sales, or Marketing);
+        
+    -   the retrieved chat snapshot is injected as context into the selected crew;
+        
+    -   the crew is executed through `kickoff()`.
+        
+    
+    Within the crew, the **Agent Manager** selects a single operational agent to respond.
+    
+    The selected agent generates its message by invoking the `send_discord_webhook` tool.
+    
+3.  **Final Profiling Phase**  
+    Once the time limit expires, the **ProfilingCrew** performs a global, non-interfering analysis of the entire conversation.
+    
+
+----------
+
+## Tooling and External Integration
+
+-   **`read_discord_messages`**  
+    Used exclusively by the orchestration layer to retrieve real Discord messages and construct a shared context snapshot.
+    
+-   **`send_discord_webhook`**  
+    Exposed as a tool to operational agents, enabling them to publish messages to Discord in a controlled and traceable manner.
+    
+
+This separation enforces a clear boundary between **context acquisition**, **decision-making**, and **message emission**.
+
+----------
+
+## Output: `report.md`
+
+The final output is a structured **Markdown report** containing:
+
+-   crew-level behavioral summaries;
+    
+-   identified **Secret Flags** with supporting conversational evidence;
+    
+-   cross-department tension analysis;
+    
+-   observations on managerial orchestration and agent selection;
+    
+-   limitations related to context snapshotting, timing constraints, and model compliance.
